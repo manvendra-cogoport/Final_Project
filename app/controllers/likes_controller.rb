@@ -40,10 +40,10 @@ class LikesController < ApplicationController
         like = article.likes.find_by(user_id: @current_user.id)
         if(like?)
             like.destroy
-            article.no_of_likes -= 1;
+            article.no_of_likes = article.no_of_likes -1;
         else
             article.likes.create(user_id: @current_user.id)
-            article.no_of_likes += 1;
+            article.no_of_likes = article.no_of_likes + 1;
         end
         article.save
         render json: article

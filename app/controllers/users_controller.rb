@@ -39,7 +39,7 @@ class UsersController < ApplicationController
         @current_user.save
         render json: @current_user
       else
-       render text: 'Not Authorized to update this user'
+       render text: 'access denied'
       end
   end
 
@@ -60,9 +60,9 @@ class UsersController < ApplicationController
     params.permit(:username, :email, :password)
   end
 
-  def authenticate
-    if(@current_user.id != @user.id)
-      render text: 'Access Denied'
-    end
-  end
+  # def authenticate
+  #   if(@current_user.id != @user.id)
+  #     render text: 'Access Denied'
+  #   end
+  # end
 end

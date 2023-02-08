@@ -37,11 +37,11 @@ Rails.application.routes.draw do
 
   post '/users/sign_up', to: 'users#create'
 
-  get '/users/:username', to: 'user#show'
+  get '/users/:username', to: 'users#show'
 
-  put '/users/:username', to: 'user#update'
+  put '/users', to: 'users#update'
 
-  delete '/users/:username', to: 'user#destroy'
+  delete '/users/:username', to: 'users#destroy'
 
   post "articles/likes/:article_id", to: "likes#like"
 

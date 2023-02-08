@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :authorize_request, except: :create
-    before_action :authenticate, except: :create
+    # before_action :authenticate, except: :create
     before_action :find_user, except: %i[create index]
 
   # GET /users
@@ -33,14 +33,14 @@ class UsersController < ApplicationController
       #   render json: { errors: @user.errors.full_messages },
       #          status: :unprocessable_entity
       # end
-      u = User.find(@current_user.id)
-      u.desc = params[:desc] || u.desc
-      u.profile_image= params[:profile_image] || u.profile.image
-      u.save
-      render json: @current_user
-      # else 
-      # render text: 'You are not allowed to edit others users'
-      # end
+      if(@current_user.id == @user.id)
+        @current_user.desc = params[:desc] || @current_user.desc
+        @current_user.profile_image = params[:profile_image] || @current_user.profile_image
+        @current_user.save
+        render json: @current_user
+   else
+       render text: 'Not Authorized to update this user'
+   end
   end
 
   # DELETE /users/{username}

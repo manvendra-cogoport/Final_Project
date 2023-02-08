@@ -1,8 +1,8 @@
 class ArticlesController < ApplicationController
     skip_before_action :verify_authenticity_token
-    # before_action :authorize_request, except: :index
-    # before_action :find_article, except: :create
-    # before_action :authenticate , except: :create
+    before_action :authorize_request, except: :index
+    before_action :find_article, except: :create
+    before_action :authenticate , except: :create
 
     def index
         a=  Article.limit(10).offset(0)
@@ -73,7 +73,7 @@ class ArticlesController < ApplicationController
     private
     def user_params
         params.permit(:user_id, :article_title, :article_text,
-             :article_image, :article_date)
+              :article_date)
     end
 
     def authenticate

@@ -38,9 +38,9 @@ class UsersController < ApplicationController
         @current_user.profile_image = params[:profile_image] || @current_user.profile_image
         @current_user.save
         render json: @current_user
-   else
+      else
        render text: 'Not Authorized to update this user'
-   end
+      end
   end
 
   # DELETE /users/{username}

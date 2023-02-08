@@ -39,7 +39,7 @@ Rails.application.routes.draw do
 
   get '/users/:username', to: 'users#show'
 
-  put '/users', to: 'users#update'
+  put '/users/update', to: 'users#update'
 
   delete '/users/:username', to: 'users#destroy'
 
